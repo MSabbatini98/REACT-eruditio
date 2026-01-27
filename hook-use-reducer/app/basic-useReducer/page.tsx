@@ -41,7 +41,6 @@ export default function Home() {
     <html suppressHydrationWarning>
       <body suppressHydrationWarning >
       <a href="/todo-list" className="floating-square">To Do List</a>
-      <a href="/basic-useReducer" className="floating-square floating-square-right">Counter</a>
 
       <h1>Count: {state.count}</h1>
       <div className="container" >

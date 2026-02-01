@@ -42,8 +42,8 @@ export default function Home() {
       <body suppressHydrationWarning >
       <a href="/todo-list" className="floating-square">To Do List</a>
 
-      <h1>Count: {state.count}</h1>
-      <div className="container" >
+      <h1 className="counter">Count: {state.count}</h1>
+      <div className="container counter_container" >
         <button onClick={increment}>+</button>
         
         <button onClick={decrement}>-</button>

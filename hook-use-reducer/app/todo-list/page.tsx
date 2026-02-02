@@ -26,6 +26,9 @@ function reducer(todos: Todo[], action: any): Todo[] {
         }
         return todo;
       });
+          
+      case ACTIONS.DELETE_TODO:
+      return todos.filter(todo => todo.id !== action.payload.id);
 
     default:
       return todos;
@@ -42,11 +45,13 @@ export default function TodoList() {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    dispatch({ type: ACTIONS.ADD_TODO, payload: { name: name } });
+    const trimmed = name.trim();
+    if (!trimmed) return; // do not submit empty or whitespace-only todos
+    dispatch({ type: ACTIONS.ADD_TODO, payload: { name: trimmed } });
     setName("");
   }
 
-  console.log(todos);
+  // console.log(todos);
 
   return (
     <html suppressHydrationWarning>

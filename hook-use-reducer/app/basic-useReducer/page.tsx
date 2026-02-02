@@ -41,11 +41,12 @@ export default function Home() {
     <html suppressHydrationWarning>
       <body suppressHydrationWarning >
       <a href="/todo-list" className="floating-square">To Do List</a>
-      <a href="/basic-useReducer" className="floating-square floating-square-right">Counter</a>
 
-      <h1>React Sandbox</h1>
-      <div className="Intro" >
-        <p>Let's learn how to use react and it's components. In particular <i>useReduder </i></p>
+      <h1 className="counter">Count: {state.count}</h1>
+      <div className="container counter_container" >
+        <button onClick={increment}>+</button>
+        
+        <button onClick={decrement}>-</button>
       </div>
       </body>
     </html>

@@ -4,7 +4,7 @@ export default function Todo({ todo, dispatch }) {
   return (
     <div className="todo_item">
         <div className="testo">
-            <p style={{color: todo.complete ? "#AAA" : "#000" }}>
+            <p className={todo.complete ? "completed" : ""}>
                 {todo.name}
             </p>
         </div>

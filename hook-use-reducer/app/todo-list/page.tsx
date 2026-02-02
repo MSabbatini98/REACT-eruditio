@@ -1,48 +1,74 @@
-'use client'
-import React, {useReducer, useState} from "react";
+"use client";
+import React, { useReducer, useState } from "react";
+import Todo from "./Todo.js";
 
-function reducer(todos, action) {
+export const ACTIONS = {
+  ADD_TODO: "add-todo",
+  TOGGLE_TODO: "toggle-todo",
+  DELETE_TODO: "delete-todo",
+};
+
+interface Todo {
+  id: number;
+  name: string;
+  complete: boolean;
+}
+
+function reducer(todos: Todo[], action: any): Todo[] {
   switch (action.type) {
     case ACTIONS.ADD_TODO:
-      return [...todos, newTodo(action.payload.name) ];
+      return [...todos, newTodo(action.payload.name)];
+
+    case ACTIONS.TOGGLE_TODO:
+      return todos.map((todo) => {
+        if (todo.id === action.payload.id) {
+          return { ...todo, complete: !todo.complete };
+        }
+        return todo;
+      });
+
     default:
       return todos;
   }
 }
 
 function newTodo(name: string) {
-  return {id: Date.now(), name: name, complete: false};
+  return { id: Date.now(), name: name, complete: false };
 }
 
-const ACTIONS = {
-    ADD_TODO: 'add-todo'
-}
 export default function TodoList() {
   const [todos, dispatch] = useReducer(reducer, []);
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
 
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    dispatch({ type: ACTIONS.ADD_TODO, payload: { name: name } });
+    setName("");
+  }
 
-
-    function handleSubmit(e: React.FormEvent) {
-        e.preventDefault();
-        dispatch({type: ACTIONS.ADD_TODO, payload: {name: name}});
-        setName('');
-    }
-
-    console.log(todos);
+  console.log(todos);
 
   return (
     <html suppressHydrationWarning>
-      <body >
+      <body>
         <h1 className="todo">Todo List</h1>
-        <div className="todo_container">
-            <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="New Todo" value={name} onChange={e => setName(e.target.value)}/>
-                <button type="submit">Add Todo</button>
-            </form>
+        <div className="container ">
+          <form className="todo_form" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="New Todo"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <button type="submit">Add Todo</button>
+          </form>
+          <div className="todo_list">
+            {todos.map((todo: Todo) => {
+              return <Todo key={todo.id} todo={todo} dispatch={dispatch} />;
+            })}
+          </div>
         </div>
       </body>
     </html>
   );
 }
-

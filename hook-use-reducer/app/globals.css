@@ -23,12 +23,14 @@ h1 {
     }
   &.todos {
       color: purple;
+
       text-shadow: purple 0px 0px 10px;
     }
 }
 
 .container {
   width: 75%;
+  max-width: 1200px;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -38,6 +40,7 @@ h1 {
   text-align: center;
   border: solid 2px gray;
   border-radius: 20px;
+  margin-bottom: 20px;
 
   &.counter_container {
     background-color: pink;
@@ -56,6 +59,7 @@ h1 {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  margin: 20px ;
   
   input {
     width: 75%;
@@ -83,10 +87,10 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  padding-bottom: 20px;
 }
 .todo_item {
   width: 90%;
-  padding: 10px;
   margin: 5px;
   border: solid 2px darkgreen;
   border-radius: 10px;    
@@ -94,10 +98,14 @@ h1 {
   flex-direction: row;
   justify-content: space-between;
 
-  .testo p.completed {
-    color: #AAA;
-    text-decoration: line-through;
-    opacity: 0.9;
+  .testo {
+    padding: 20px;
+    font-size: 20px;
+    p.completed {
+      color: #AAA;
+      text-decoration: line-through;
+      opacity: 0.9;
+    }
   }
 
   .buttons {
